@@ -1,4 +1,4 @@
-# ChatGPT Completions CLI
+# Minimal ChatGPT Completions CLI
 
 ## Setup
 
