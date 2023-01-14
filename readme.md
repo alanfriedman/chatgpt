@@ -9,6 +9,8 @@
 
 Run `./main.py -h` for a list of options. If a prompt isn't provided using `--prompt PROMPT`, you can enter one interactively.
 
+Responses and some metadata are also logged to `chatgpt.log`.
+
 ## Compatibility
 
 Tested on Python 3.10.9.
