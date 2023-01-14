@@ -5,8 +5,12 @@ import openai
 import json
 import argparse, sys
 import logging
-# from datetime import datetime
 import uuid
+
+scriptPath = os.path.realpath(__file__)
+scriptDir = os.path.dirname(scriptPath)
+
+logFile = os.path.join(scriptDir, 'chatgpt.log')
 
 id = uuid.uuid4()
 
@@ -15,7 +19,7 @@ extra = {'id': id}
 logger = logging.getLogger(__name__)
 formatter = logging.Formatter('%(asctime)s - %(id)s - %(message)s',  '%m/%d/%Y %I:%M:%S %p')
 logger.setLevel(logging.DEBUG)
-fileHandler = logging.FileHandler('chatgpt.log')
+fileHandler = logging.FileHandler(logFile)
 fileHandler.setFormatter(formatter)
 logger.addHandler(fileHandler)
 logger = logging.LoggerAdapter(logger, extra)
@@ -30,7 +34,9 @@ parser.add_argument("--maxTokens", help="Max tokens", type=int, default=48)
 
 args=parser.parse_args()
 
-openai.api_key_path = "./openai_api_key"
+keyFile = os.path.join(scriptDir, 'openai_api_key')
+
+openai.api_key_path = keyFile
 
 if args.prompt:
   prompt = args.prompt
